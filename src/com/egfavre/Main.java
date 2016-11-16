@@ -13,10 +13,10 @@ public class Main {
         ConfigurationBuilder cf = new ConfigurationBuilder();
 
         cf.setDebugEnabled(true)
-                .setOAuthConsumerKey("LHwwCO6Ti83khRDL5VOXCxHxf")
-                .setOAuthConsumerSecret("1UzGeUYaILaENN7Bq3Sn5TVJrTGyQYmlQDygWMnGfohW2bKNls")
-                .setOAuthAccessToken("798956880890626057-dErWME4TYvbduVPpd6jQ7Y5lHdfcOgr")
-                .setOAuthAccessTokenSecret("\trBHQvmWgiOTzAgG3vIVUvskSGgoASAXytYXTnHtw6xSkV");
+                .setOAuthConsumerKey("nNMkFmpRgKJH9xeOLB9FhwOun")
+                .setOAuthConsumerSecret("xaL4aQcroETUOxajQZqpzbBhEEQG19zZf0SYC3gykCoRpcstr0")
+                .setOAuthAccessToken("798956880890626057-Bj19LnyuHaIsMxlWDX8sCSOV1HanP7b")
+                .setOAuthAccessTokenSecret("nBOkD8UzQg4FNNeNfxewVmCeeM3WwsgZ5jMgGECRGFlAu");
 
         TwitterFactory tf = new TwitterFactory(cf.build());
         twitter4j.Twitter twitter = tf.getInstance();
