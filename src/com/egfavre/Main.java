@@ -4,11 +4,20 @@ import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
 
-    public static void main(String[] args) throws TwitterException{
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.Channel;
+
+import java.util.concurrent.TimeoutException;
+
+public class Main {
+    private final static String QUEUE_NAME = "hello";
+
+    public static void main(String[] args) throws TwitterException, java.io.IOException, TimeoutException{
         ConfigurationBuilder cf = new ConfigurationBuilder();
 
         cf.setDebugEnabled(true)
@@ -21,10 +30,27 @@ public class Main {
         twitter4j.Twitter twitter = tf.getInstance();
 
         List <Status> status = twitter.getHomeTimeline();
+        ArrayList<String> feed = new ArrayList<>();
+
         for (Status st: status){
-            System.out.println(st.getUser().getName() + "---" + st.getText());
+            String line = (st.getUser().getName() + "---" + st.getText() + System.lineSeparator());
+            feed.add(line);
         }
 
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost" );
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
 
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        String message = feed.toString();
+        channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+        System.out.println(" [x] Sent '" + message + "'");
+
+        channel.close();
+        connection.close();
     }
+
+
 }
+
