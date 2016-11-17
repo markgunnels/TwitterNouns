@@ -9,5 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="twitter4j-core-4.0.4" level="project" />
     <orderEntry type="library" name="twitter4j-stream-4.0.4" level="project" />
+    <orderEntry type="library" name="com.rabbitmq:amqp-client:3.6.5" level="project" />
+    <orderEntry type="library" name="com.github.mlk:miniature-queue-rabbitmq-java7:0.0.1" level="project" />
   </component>
 </module>
