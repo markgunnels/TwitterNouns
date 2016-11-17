@@ -11,6 +11,8 @@
     <orderEntry type="library" name="twitter4j-stream-4.0.4" level="project" />
     <orderEntry type="library" name="com.rabbitmq:amqp-client:3.6.5" level="project" />
     <orderEntry type="library" name="com.github.mlk:miniature-queue-rabbitmq-java7:0.0.1" level="project" />
-    <orderEntry type="library" name="edu.washington.cs.knowitall.nlptools:nlptools-postag-stanford_2.10:2.4.5" level="project" />
+    <orderEntry type="library" name="slf4j-api" level="project" />
+    <orderEntry type="library" name="slf4j-simple" level="project" />
+    <orderEntry type="library" name="edu.stanford.nlp:stanford-corenlp:3.6.0" level="project" />
   </component>
 </module>

@@ -1,10 +1,9 @@
 package com.egfavre;
 
+
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
 import java.io.IOException;
-
-import static edu.stanford.nlp.tagger.maxent.MaxentTagger.DEFAULT_NLP_GROUP_MODEL_PATH;
 
 /**
  * Created by user on 11/17/16.
@@ -14,7 +13,7 @@ public class NounTagger {
             ClassNotFoundException {
 
         // Initialize the tagger
-        MaxentTagger tagger = new MaxentTagger("models/bidirectional-distsim-wsj-0-18.tagger");
+        MaxentTagger tagger = new MaxentTagger("/Users/user/IdeaProjects/TwitterNouns/models/english-bidirectional-distsim.tagger");
 
         // The sample string
         String sample = "This is a sample text";
