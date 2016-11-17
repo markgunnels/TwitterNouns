@@ -4,9 +4,12 @@ package com.egfavre;
  * Created by user on 11/16/16.
  */
 import com.rabbitmq.client.*;
+import edu.stanford.nlp.process.DocumentPreprocessor;
+import edu.stanford.nlp.process.TokenizerFactory;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
 import java.io.IOException;
+import java.io.StringReader;
 
 public class PubSubRecvTagger {
 
@@ -33,21 +36,20 @@ public class PubSubRecvTagger {
                 String message = new String(body, "UTF-8");
                 String tagged = tagger.tagString(message);
 
-                int pos = 0;
-                int end = tagged.length() - 1;
+                String findStr = "_NN";
+                int lastIndex = 0;
+                int count = 0;
 
-                int nouns = 0;
+                while(lastIndex != -1){
 
-                while (pos < (end - 1)){
-                    pos++;
-                    String sequence = tagged.substring(pos - 1, pos + 2);
+                    lastIndex = tagged.indexOf(findStr,lastIndex);
 
-                    if (sequence.equals("_NN")){
-                        nouns++;
+                    if(lastIndex != -1){
+                        count ++;
+                        lastIndex += findStr.length();
                     }
-
                 }
-                System.out.println("This stream contains " + nouns + " nouns.");
+                System.out.println("This stream contains " + count + " nouns.");
             }
         };
         channel.basicConsume(queueName, true, consumer);
