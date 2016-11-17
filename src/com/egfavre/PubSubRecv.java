@@ -28,7 +28,7 @@ public class PubSubRecv {
                 public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
                         throws IOException {
                     String message = new String(body, "UTF-8");
-                    System.out.println(" [x] Received '" + message.toString() + "'");
+                    System.out.println(" [x] Received " + System.lineSeparator() + message + "");
                 }
             };
             channel.basicConsume(queueName, true, consumer);
