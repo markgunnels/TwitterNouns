@@ -15,16 +15,20 @@ import com.rabbitmq.client.Channel;
 import java.util.concurrent.TimeoutException;
 
 public class Main {
-    private final static String QUEUE_NAME = "hello";
-
+    private final static String QUEUE_NAME = System.getenv("QUEUE_NAME");
+    public static final String OAUTH_CONSUMER_KEY = System.getenv("OAUTH_CONSUMER_KEY");
+    public static final String OAUTH_CONSUMER_SECRET = System.getenv("OAUTH_CONSUMER_SECRET");
+    public static final String OAUTH_ACCESS_TOKEN = System.getenv("OAUTH_ACCESS_TOKEN");
+    public static final String OAUTH_ACCESS_TOKEN_SECRET = System.getenv("OAUTH_ACCESS_TOKEN_SECRET");
+    
     public static void main(String[] args) throws TwitterException, java.io.IOException, TimeoutException{
         ConfigurationBuilder cf = new ConfigurationBuilder();
 
         cf.setDebugEnabled(true)
-                .setOAuthConsumerKey("nNMkFmpRgKJH9xeOLB9FhwOun")
-                .setOAuthConsumerSecret("xaL4aQcroETUOxajQZqpzbBhEEQG19zZf0SYC3gykCoRpcstr0")
-                .setOAuthAccessToken("798956880890626057-Bj19LnyuHaIsMxlWDX8sCSOV1HanP7b")
-                .setOAuthAccessTokenSecret("nBOkD8UzQg4FNNeNfxewVmCeeM3WwsgZ5jMgGECRGFlAu");
+            .setOAuthConsumerKey(OAUTH_CONSUMER_KEY)
+            .setOAuthConsumerSecret(OAUTH_CONSUMER_SECRET)
+            .setOAuthAccessToken(OAUTH_ACCESS_TOKEN)
+            .setOAuthAccessTokenSecret(OAUTH_ACCESS_TOKEN_SECRET);
 
         TwitterFactory tf = new TwitterFactory(cf.build());
         twitter4j.Twitter twitter = tf.getInstance();
